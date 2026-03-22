@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waves of Belonging</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app" class="app era-intro">
+      <div class="background-layers" aria-hidden="true">
+        <div class="bg-gradient"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-orb orb-a"></div>
+        <div class="bg-orb orb-b"></div>
+      </div>
+
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Interactive Narrative Journey</p>
+          <h1>Waves of Belonging</h1>
+        </div>
+        <button id="reset-button" class="ghost-button" type="button">Restart Journey</button>
+      </header>
+
+      <main class="layout">
+        <section class="panel hero-panel" id="hero-panel">
+          <div class="hero-copy">
+            <p class="chapter-tag" id="chapter-tag">Classroom Narrative RPG</p>
+            <h2 id="hero-title">Carry a family story across generations.</h2>
+            <p id="hero-description">
+              Move through three eras of the Vietnamese diaspora, making choices that shape
+              survival, belonging, memory, and voice.
+            </p>
+          </div>
+
+          <div class="avatar-grid" id="avatar-grid"></div>
+
+          <div class="start-actions">
+            <button id="start-button" class="primary-button" type="button">Begin the Journey</button>
+            <p class="supporting-text">
+              Designed for short classroom play: each era focuses on reflection, tradeoffs, and
+              discussion rather than winning.
+            </p>
+          </div>
+        </section>
+
+        <section class="panel game-panel hidden" id="game-panel">
+          <div class="era-header">
+            <div>
+              <p class="eyebrow" id="era-kicker">Phase 1</p>
+              <h2 id="era-title">The Crossing</h2>
+            </div>
+            <div class="era-meta">
+              <p id="era-generation">1st Generation</p>
+              <p id="era-boss">Obstacle: Bureaucracy</p>
+            </div>
+          </div>
+
+          <div class="status-grid">
+            <div class="metric-card">
+              <div class="metric-label-row">
+                <span>Social Capital</span>
+                <strong id="social-value">50</strong>
+              </div>
+              <div class="meter"><span id="social-bar"></span></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label-row">
+                <span>Cultural Soul</span>
+                <strong id="culture-value">50</strong>
+              </div>
+              <div class="meter"><span id="culture-bar"></span></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label-row">
+                <span>Political Agency</span>
+                <strong id="agency-value">50</strong>
+              </div>
+              <div class="meter"><span id="agency-bar"></span></div>
+            </div>
+          </div>
+
+          <div class="story-grid">
+            <article class="story-card">
+              <p class="scene-label" id="scene-label">Scene 1 of 3</p>
+              <h3 id="scene-title">Departure</h3>
+              <p id="scene-text"></p>
+            </article>
+
+            <aside class="story-card side-card">
+              <h3>Current Avatar</h3>
+              <div id="selected-avatar-summary"></div>
+              <div class="trait-list" id="trait-list"></div>
+            </aside>
+          </div>
+
+          <section class="choices-card" id="choices-card">
+            <h3 id="choice-prompt">Choose your response</h3>
+            <div id="choices-container" class="choices-container"></div>
+          </section>
+        </section>
+
+        <section class="panel mini-panel hidden" id="mini-panel">
+          <div class="era-header">
+            <div>
+              <p class="eyebrow">Media Event</p>
+              <h2>The Sympathizer Edit Room</h2>
+            </div>
+            <div class="era-meta">
+              <p>Red Ink Exercise</p>
+              <p>Balance funding and authenticity</p>
+            </div>
+          </div>
+
+          <p class="mini-intro">
+            A studio invites you to consult on a Vietnam War script. Strike out harmful tropes, but
+            know that each choice changes how much power you keep in the room.
+          </p>
+
+          <div id="script-lines" class="script-lines"></div>
+          <button id="resolve-mini-game" class="primary-button" type="button">Lock in Edits</button>
+        </section>
+
+        <section class="panel report-panel hidden" id="report-panel">
+          <p class="eyebrow">Ending & Debrief</p>
+          <h2 id="report-title">Your Heritage Report</h2>
+          <p id="report-summary"></p>
+          <div id="report-details" class="report-details"></div>
+          <button id="play-again-button" class="primary-button" type="button">Play Another Lineage</button>
+        </section>
+      </main>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
