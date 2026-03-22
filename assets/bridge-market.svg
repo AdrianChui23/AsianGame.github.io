@@ -1,0 +1,24 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" rx="32" fill="#0D1322"/>
+  <rect width="1200" height="700" rx="32" fill="url(#paint0_linear)"/>
+  <circle cx="922" cy="148" r="94" fill="#FF7688" fill-opacity="0.33"/>
+  <circle cx="240" cy="151" r="120" fill="#56EBC6" fill-opacity="0.18"/>
+  <rect x="111" y="207" width="289" height="231" rx="24" fill="#171A27" stroke="#71FFD2" stroke-opacity="0.42" stroke-width="2"/>
+  <rect x="456" y="176" width="265" height="278" rx="24" fill="#1D1631" stroke="#C6A0FF" stroke-opacity="0.42" stroke-width="2"/>
+  <rect x="772" y="228" width="302" height="198" rx="24" fill="#171421" stroke="#FFAA73" stroke-opacity="0.45" stroke-width="2"/>
+  <path d="M0 539C125 495 228 519 333 557C447 598 533 625 647 589C763 552 850 477 1008 492C1084 500 1143 521 1200 536V700H0V539Z" fill="#150E1E"/>
+  <path d="M0 574C116 539 242 614 381 627C518 640 651 589 786 573C934 555 1078 591 1200 620V700H0V574Z" fill="#1F1A35"/>
+  <text x="148" y="321" fill="#77FFE0" font-family="Arial, sans-serif" font-size="58" font-weight="700">PHO</text>
+  <text x="500" y="330" fill="#E2C4FF" font-family="Arial, sans-serif" font-size="56" font-weight="700">VIDEO</text>
+  <text x="823" y="326" fill="#FFC28B" font-family="Arial, sans-serif" font-size="50" font-weight="700">MARKET</text>
+  <rect x="885" y="479" width="117" height="70" rx="18" fill="#0E1322" stroke="#FFB36B" stroke-opacity="0.4" stroke-width="2"/>
+  <path d="M921 459L944 408L966 459H921Z" fill="#FF8D72"/>
+  <rect x="934" y="457" width="19" height="57" rx="9.5" fill="#F5E6D7"/>
+  <defs>
+    <linearGradient id="paint0_linear" x1="125" y1="69" x2="1054" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#21153A"/>
+      <stop offset="0.52" stop-color="#0B2336"/>
+      <stop offset="1" stop-color="#370E24"/>
+    </linearGradient>
+  </defs>
+</svg>

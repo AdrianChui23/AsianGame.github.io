@@ -43,6 +43,22 @@
               discussion rather than winning.
             </p>
           </div>
+
+          <div class="hero-visual">
+            <img
+              id="hero-image"
+              class="scene-image"
+              src="./assets/intro-journey.svg"
+              alt="Stylized collage of sea, city lights, and a recording studio representing the journey across generations"
+            />
+            <div class="visual-caption">
+              <p class="scene-label">Visual Journey</p>
+              <p id="hero-visual-caption">
+                From departure to resettlement to reclamation, each chapter shifts the world around
+                you as much as the choices within it.
+              </p>
+            </div>
+          </div>
         </section>
 
         <section class="panel game-panel hidden" id="game-panel">
@@ -83,7 +99,14 @@
 
           <div class="story-grid">
             <article class="story-card">
-              <p class="scene-label" id="scene-label">Scene 1 of 3</p>
+              <img id="scene-image" class="scene-image" src="" alt="" />
+              <div class="scene-meta-row">
+                <p class="scene-label" id="scene-label">Scene 1 of 3</p>
+                <p class="scene-setting" id="scene-setting"></p>
+              </div>
+              <p class="scene-caption" id="scene-caption"></p>
+              <div class="memory-strip" id="memory-strip"></div>
+              <p class="scene-quote" id="scene-quote"></p>
               <h3 id="scene-title">Departure</h3>
               <p id="scene-text"></p>
             </article>
@@ -117,6 +140,12 @@
             A studio invites you to consult on a Vietnam War script. Strike out harmful tropes, but
             know that each choice changes how much power you keep in the room.
           </p>
+
+          <img
+            class="scene-image mini-image"
+            src="./assets/sympathizer-room.svg"
+            alt="Stylized podcast and editing studio with script pages and red correction marks"
+          />
 
           <div id="script-lines" class="script-lines"></div>
           <button id="resolve-mini-game" class="primary-button" type="button">Lock in Edits</button>
