@@ -536,7 +536,7 @@ const introContent = {
   title: "Carry a family story across generations.",
   description:
     "Move through three eras of the Vietnamese diaspora, making choices that shape survival, belonging, memory, and voice.",
-  image: "./assets/intro-journey.svg",
+  image: "./assets/scenes/intro.jpg",
   caption:
     "From departure to resettlement to reclamation, each chapter shifts the world around you as much as the choices within it.",
 };
@@ -585,6 +585,7 @@ const elements = {
   scriptLines: document.getElementById("script-lines"),
   resolveMiniGame: document.getElementById("resolve-mini-game"),
   reportTitle: document.getElementById("report-title"),
+  reportImage: document.getElementById("report-image"),
   reportSummary: document.getElementById("report-summary"),
   reportDetails: document.getElementById("report-details"),
 };
@@ -983,6 +984,8 @@ function renderReport() {
 
   const avatar = getSelectedAvatar();
   elements.reportTitle.textContent = `${avatar.name}: Heritage Report`;
+  elements.reportImage.src = "./assets/scenes/Ending.jpg";
+  elements.reportImage.alt = `${avatar.name} ending scene`;
   elements.reportSummary.textContent = buildReportText();
   elements.reportDetails.innerHTML = "";
 
@@ -1038,7 +1041,7 @@ function resetGame() {
   elements.heroTitle.textContent = introContent.title;
   elements.heroDescription.textContent = introContent.description;
   elements.heroImage.src = introContent.image;
-  elements.heroImage.alt = "Stylized collage of sea, city lights, and a recording studio";
+  elements.heroImage.alt = "Intro scene for Waves of Belonging";
   elements.heroVisualCaption.textContent = introContent.caption;
   renderAvatarCards();
   renderAvatarSummary();
