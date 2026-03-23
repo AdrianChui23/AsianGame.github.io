@@ -527,6 +527,7 @@ const state = {
   eraIndex: -1,
   sceneIndex: 0,
   history: [],
+  bias: { social: 0, culture: 0, agency: 0 },
   scriptSelections: new Set(),
 };
 
@@ -574,9 +575,13 @@ const elements = {
   sceneTitle: document.getElementById("scene-title"),
   sceneText: document.getElementById("scene-text"),
   choicePrompt: document.getElementById("choice-prompt"),
+  choiceLens: document.getElementById("choice-lens"),
   choicesContainer: document.getElementById("choices-container"),
+  avatarEvolution: document.getElementById("avatar-evolution"),
   selectedAvatarSummary: document.getElementById("selected-avatar-summary"),
   traitList: document.getElementById("trait-list"),
+  instinctText: document.getElementById("instinct-text"),
+  instinctTags: document.getElementById("instinct-tags"),
   scriptLines: document.getElementById("script-lines"),
   resolveMiniGame: document.getElementById("resolve-mini-game"),
   reportTitle: document.getElementById("report-title"),
@@ -590,6 +595,80 @@ function clamp(value) {
 
 function getSelectedAvatar() {
   return avatars.find((avatar) => avatar.id === state.selectedAvatarId) ?? avatars[0];
+}
+
+function getResourceEntries() {
+  return [
+    ["social", state.social],
+    ["culture", state.culture],
+    ["agency", state.agency],
+  ].sort((a, b) => b[1] - a[1]);
+}
+
+function getDominantLean() {
+  const sorted = [
+    ["social", state.bias.social + state.social * 0.08],
+    ["culture", state.bias.culture + state.culture * 0.08],
+    ["agency", state.bias.agency + state.agency * 0.08],
+  ].sort((a, b) => b[1] - a[1]);
+
+  const [first, second] = sorted;
+  if (Math.abs(first[1] - second[1]) < 1.2) {
+    return "hybrid";
+  }
+
+  return first[0];
+}
+
+function getLeanLabel(lean) {
+  return {
+    social: "Social Capital",
+    culture: "Cultural Soul",
+    agency: "Political Agency",
+    hybrid: "Hybrid Instinct",
+  }[lean];
+}
+
+function describeAvatarState(lean) {
+  const phrases = {
+    social: {
+      look: "Your posture, styling, and instincts now lean toward institutional access and strategic assimilation.",
+      lens: "You increasingly scan rooms for safety, optics, and the cost of standing out.",
+      token: "SC",
+    },
+    culture: {
+      look: "Your appearance now carries more ritual, memory, and visible connection to family and heritage.",
+      lens: "You increasingly make decisions by asking what protects language, elders, and communal memory.",
+      token: "CS",
+    },
+    agency: {
+      look: "Your look sharpens into public voice and self-definition, signaling a readiness to intervene and speak back.",
+      lens: "You increasingly evaluate choices by who controls the story and who gets erased.",
+      token: "PA",
+    },
+    hybrid: {
+      look: "Your appearance reflects a layered identity, carrying access, memory, and voice at the same time.",
+      lens: "You are learning to balance survival, heritage, and authorship without letting one erase the others.",
+      token: "HY",
+    },
+  };
+
+  return phrases[lean];
+}
+
+function getChoiceLean(choice) {
+  const entries = Object.entries(choice.effects).sort((a, b) => b[1] - a[1]);
+  return entries[0]?.[0] ?? "agency";
+}
+
+function getInstinctBonus(choice) {
+  const lean = getChoiceLean(choice);
+  const dominant = getDominantLean();
+  if (dominant === "hybrid" || dominant !== lean) {
+    return null;
+  }
+
+  return { lean, amount: 2 };
 }
 
 function renderAvatarCards() {
@@ -621,17 +700,52 @@ function renderAvatarCards() {
 
 function renderAvatarSummary() {
   const avatar = getSelectedAvatar();
+  const dominantLean = getDominantLean();
+  const avatarState = describeAvatarState(dominantLean);
   elements.selectedAvatarSummary.innerHTML = `
     <p><strong>${avatar.name}</strong> enters this journey carrying ${avatar.look.toLowerCase()}.</p>
     <p>${avatar.description}</p>
+    <p>${avatarState.look}</p>
   `;
 
   elements.traitList.innerHTML = "";
-  avatar.traits.forEach((trait) => {
+  const topResources = getResourceEntries()
+    .slice(0, 2)
+    .map(([resource, value]) => `${getLeanLabel(resource)} ${value}`);
+
+  [...avatar.traits, ...topResources].forEach((trait) => {
     const pill = document.createElement("span");
     pill.className = "trait-pill";
     pill.textContent = trait;
     elements.traitList.appendChild(pill);
+  });
+
+  elements.avatarEvolution.innerHTML = `
+    <div class="avatar-portrait ${dominantLean}">
+      <div class="avatar-figure">
+        <div class="avatar-head"></div>
+        <div class="avatar-accent"></div>
+        <div class="avatar-body"></div>
+      </div>
+      <div class="avatar-token">${avatarState.token}</div>
+    </div>
+    <div class="avatar-summary">
+      <p><strong>Current Evolution:</strong> ${getLeanLabel(dominantLean)}</p>
+      <p>${avatarState.lens}</p>
+    </div>
+  `;
+
+  elements.instinctText.textContent = avatarState.lens;
+  elements.instinctTags.innerHTML = "";
+  [
+    `Social ${state.bias.social}`,
+    `Culture ${state.bias.culture}`,
+    `Agency ${state.bias.agency}`,
+  ].forEach((tag) => {
+    const pill = document.createElement("span");
+    pill.className = "trait-pill";
+    pill.textContent = tag;
+    elements.instinctTags.appendChild(pill);
   });
 }
 
@@ -710,13 +824,21 @@ function renderEra() {
 
 function renderChoices(choices) {
   elements.choicesContainer.innerHTML = "";
+  const dominantLean = getDominantLean();
+  elements.choiceLens.textContent =
+    dominantLean === "hybrid"
+      ? "Your avatar is balancing multiple instincts right now, so no single choice gets a strong pull."
+      : `Your avatar currently leans toward ${getLeanLabel(dominantLean)}. Matching choices will slightly reinforce that instinct.`;
+
   choices.forEach((choice) => {
+    const instinctBonus = getInstinctBonus(choice);
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "choice-button";
+    button.className = `choice-button ${instinctBonus ? "instinct-match" : ""}`;
     button.innerHTML = `
       <span class="choice-title">${choice.title}</span>
       <span class="choice-impact">${choice.impact}</span>
+      ${instinctBonus ? `<span class="choice-badge">Instinct bonus: +${instinctBonus.amount} ${getLeanLabel(instinctBonus.lean)}</span>` : ""}
     `;
     button.addEventListener("click", () => chooseOption(choice));
     elements.choicesContainer.appendChild(button);
@@ -724,9 +846,12 @@ function renderChoices(choices) {
 }
 
 function chooseOption(choice) {
-  state.social = clamp(state.social + choice.effects.social);
-  state.culture = clamp(state.culture + choice.effects.culture);
-  state.agency = clamp(state.agency + choice.effects.agency);
+  const instinctBonus = getInstinctBonus(choice);
+  state.social = clamp(state.social + choice.effects.social + (instinctBonus?.lean === "social" ? instinctBonus.amount : 0));
+  state.culture = clamp(state.culture + choice.effects.culture + (instinctBonus?.lean === "culture" ? instinctBonus.amount : 0));
+  state.agency = clamp(state.agency + choice.effects.agency + (instinctBonus?.lean === "agency" ? instinctBonus.amount : 0));
+  const lean = getChoiceLean(choice);
+  state.bias[lean] += 1;
   updateMeters();
 
   const era = eras[state.eraIndex];
@@ -734,7 +859,7 @@ function chooseOption(choice) {
   state.history.push({
     era: era.title,
     scene: scene.title,
-    choice: choice.title,
+    choice: instinctBonus ? `${choice.title} (instinct reinforced)` : choice.title,
   });
 
   state.sceneIndex += 1;
@@ -805,6 +930,9 @@ function resolveMiniGame() {
   state.agency = clamp(state.agency + authenticEdits * 6 - safeLinesCut * 2);
   state.culture = clamp(state.culture + authenticEdits * 5 - harmfulUntouched * 5);
   state.social = clamp(state.social - authenticEdits * 2 - safeLinesCut * 4 + 4);
+  state.bias.agency += authenticEdits;
+  state.bias.culture += authenticEdits;
+  state.bias.social += safeLinesCut;
   updateMeters();
 
   state.history.push({
@@ -871,6 +999,10 @@ function renderReport() {
           : "You secured access and stability, but some intimacy with heritage became harder to keep.",
     },
     {
+      label: "Avatar Evolution",
+      body: `${getSelectedAvatar().name} finished the journey leaning toward ${getLeanLabel(getDominantLean())}.`,
+    },
+    {
       label: "Debrief Prompt",
       body:
         "Which choice felt most unfair? Which generation carried the heaviest translating burden? What would repair look like now?",
@@ -896,6 +1028,7 @@ function resetGame() {
   state.eraIndex = -1;
   state.sceneIndex = 0;
   state.history = [];
+  state.bias = { social: 0, culture: 0, agency: 0 };
   state.scriptSelections = new Set();
   applyAvatarBaseModifiers();
   updateMeters();
