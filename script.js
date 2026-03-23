@@ -48,7 +48,7 @@ const eras = [
     scenes: [
       {
         title: "Departure",
-        image: "./assets/scene-01-escape.svg",
+        image: "./assets/scenes/scene-01-escape.jpg",
         setting: "Saigon, April 1975",
         caption: "Heat sits over the street as departure becomes a decision made in whispers.",
         quote: "\"You cannot carry a homeland whole, only the pieces you refuse to drop.\"",
@@ -76,7 +76,7 @@ const eras = [
       },
       {
         title: "At Sea",
-        image: "./assets/scene-02-sea.svg",
+        image: "./assets/scenes/scene-02-sea.jpg",
         setting: "South China Sea, night crossing",
         caption: "Salt, engine noise, and uncertainty turn every minute into a test of trust.",
         quote: "\"The water is dark enough to hide fear, but not the sound of children crying.\"",
@@ -104,7 +104,7 @@ const eras = [
       },
       {
         title: "Resettlement Desk",
-        image: "./assets/scene-03-camp.svg",
+        image: "./assets/scenes/scene-03-camp.jpg",
         setting: "Camp processing office",
         caption: "A metal chair, a paper form, and the first official version of your future.",
         quote: "\"In one column they ask who you are. In another they ask what name America can tolerate.\"",
@@ -132,7 +132,7 @@ const eras = [
       },
       {
         title: "Little Saigon Begins",
-        image: "./assets/scene-04-sponsor.svg",
+        image: "./assets/scenes/scene-04-sponsor.jpg",
         setting: "Church basement, early resettlement years",
         caption: "Folded chairs and styrofoam cups become the first architecture of community.",
         quote: "\"A neighborhood can begin with one pot of soup and a table where grief is finally spoken aloud.\"",
@@ -160,7 +160,7 @@ const eras = [
       },
       {
         title: "Letter Home",
-        image: "./assets/scene-05-arrival.svg",
+        image: "./assets/scenes/scene-05-arrival.jpg",
         setting: "California apartment, late evening",
         caption: "The new world is thin-walled, fluorescent, and full of untranslatable ache.",
         quote: "\"Even in safety, there are nights when survival sounds like homesickness.\"",
@@ -201,7 +201,7 @@ const eras = [
     scenes: [
       {
         title: "Checkout Counter",
-        image: "./assets/scene-06-school.svg",
+        image: "./assets/scenes/scene-06-school.jpg",
         setting: "Little Saigon grocery, after school",
         caption: "You are still carrying a backpack, but the room expects you to be an interpreter.",
         quote: "\"Some children learn algebra at the register and adulthood in aisle six.\"",
@@ -229,7 +229,7 @@ const eras = [
       },
       {
         title: "Living Room Translation",
-        image: "./assets/scene-08-broker.svg",
+        image: "./assets/scenes/scene-08-broker.jpg",
         setting: "Family apartment, kitchen table",
         caption: "Bills, school forms, and medical notices pile up beside your homework.",
         quote: "\"You become fluent in adult fear before you become fluent in yourself.\"",
@@ -257,7 +257,7 @@ const eras = [
       },
       {
         title: "Honor Roll Hallway",
-        image: "./assets/scene-10-pressure.svg",
+        image: "./assets/scenes/scene-10-pressure.jpg",
         setting: "Suburban high school, award day",
         caption: "Recognition arrives wrapped in assumptions about race, obedience, and gratitude.",
         quote: "\"Praise can still be a cage if it only loves the version of you that never complains.\"",
@@ -285,7 +285,7 @@ const eras = [
       },
       {
         title: "College Essay",
-        image: "./assets/scene-09-enclave.svg",
+        image: "./assets/scenes/scene-09-enclave.jpg",
         setting: "Computer lab, application season",
         caption: "The cursor blinks like a dare: be legible, but not too sharp.",
         quote: "\"Admissions wants your pain translated into inspiration and your politics trimmed into resilience.\"",
@@ -313,7 +313,7 @@ const eras = [
       },
       {
         title: "Family Wedding",
-        image: "./assets/scene-07-shop.svg",
+        image: "./assets/scenes/scene-07-shop.jpg",
         setting: "Banquet hall, weekend celebration",
         caption: "Laughter and karaoke fill the room, but so do expectations about who you must become.",
         quote: "\"Joy can also be a stage where the family rehearses its hopes on your body.\"",
@@ -354,7 +354,7 @@ const eras = [
     scenes: [
       {
         title: "Archive Box",
-        image: "./assets/scene-11-altar.svg",
+        image: "./assets/scenes/scene-11-altar.jpg",
         setting: "Family garage archive",
         caption: "Dust, cassette hiss, and handwritten margins begin speaking across decades.",
         quote: "\"History returns first as fragments, asking whether you will sit with what was never neatly passed down.\"",
@@ -382,7 +382,7 @@ const eras = [
       },
       {
         title: "Language Class",
-        image: "./assets/scene-15-return.svg",
+        image: "./assets/scenes/scene-15-return.jpg",
         setting: "Community center, evening session",
         caption: "Adult learners stumble toward syllables that feel both intimate and newly earned.",
         quote: "\"Relearning a language can feel like meeting your ancestors with an accent.\"",
@@ -410,7 +410,7 @@ const eras = [
       },
       {
         title: "Campus Panel",
-        image: "./assets/scene-14-classroom.svg",
+        image: "./assets/scenes/scene-14-classroom.jpg",
         setting: "University auditorium",
         caption: "The microphone is clean, but the framing is not.",
         quote: "\"Institutions often invite your voice only after deciding what kind of healing they are comfortable hearing.\"",
@@ -438,7 +438,7 @@ const eras = [
       },
       {
         title: "Language of the Future",
-        image: "./assets/scene-13-voice.svg",
+        image: "./assets/scenes/scene-13-voice.jpg",
         setting: "Cafe after a family gathering",
         caption: "The next generation asks for guidance, but what they really need is permission to build a livable inheritance.",
         quote: "\"Not every descendant receives fluency, but every descendant receives a relationship to loss.\"",
@@ -466,7 +466,7 @@ const eras = [
       },
       {
         title: "Podcast Recording",
-        image: "./assets/scene-12-critique.svg",
+        image: "./assets/scenes/scene-12-critique.jpg",
         setting: "Independent studio, present day",
         caption: "The red light turns on. You can flatten the story for listeners, or let contradiction remain audible.",
         quote: "\"To speak publicly is to decide whether your family becomes a lesson, a spectacle, or a living archive.\"",
