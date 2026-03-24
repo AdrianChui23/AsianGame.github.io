@@ -577,7 +577,6 @@ const elements = {
   choicePrompt: document.getElementById("choice-prompt"),
   choiceLens: document.getElementById("choice-lens"),
   choicesContainer: document.getElementById("choices-container"),
-  avatarEvolution: document.getElementById("avatar-evolution"),
   selectedAvatarSummary: document.getElementById("selected-avatar-summary"),
   traitList: document.getElementById("trait-list"),
   instinctText: document.getElementById("instinct-text"),
@@ -720,21 +719,6 @@ function renderAvatarSummary() {
     pill.textContent = trait;
     elements.traitList.appendChild(pill);
   });
-
-  elements.avatarEvolution.innerHTML = `
-    <div class="avatar-portrait ${dominantLean}">
-      <div class="avatar-figure">
-        <div class="avatar-head"></div>
-        <div class="avatar-accent"></div>
-        <div class="avatar-body"></div>
-      </div>
-      <div class="avatar-token">${avatarState.token}</div>
-    </div>
-    <div class="avatar-summary">
-      <p><strong>Current Evolution:</strong> ${getLeanLabel(dominantLean)}</p>
-      <p>${avatarState.lens}</p>
-    </div>
-  `;
 
   elements.instinctText.textContent = avatarState.lens;
   elements.instinctTags.innerHTML = "";
