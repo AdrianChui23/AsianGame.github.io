@@ -10,14 +10,20 @@ This project is a browser-based narrative RPG about the Vietnamese diaspora acro
 
 Run the game from a local server so the images and assets load reliably.
 
-In Terminal:
+1. Clone the repository:
 
 ```bash
-cd "/Users/adrianchui/AsianGame.github.io"
+git clone https://github.com/AdrianChui23/AsianGame.github.io.git
+cd AsianGame.github.io
+```
+
+2. Start a local server from the project folder:
+
+```bash
 python3 -m http.server 8090
 ```
 
-Then open it in your browser:
+3. Open it in your browser:
 
 ```bash
 open http://127.0.0.1:8090
@@ -26,7 +32,6 @@ open http://127.0.0.1:8090
 If port `8090` is already in use, try:
 
 ```bash
-cd "/Users/adrianchui/AsianGame.github.io"
 python3 -m http.server 8100
 open http://127.0.0.1:8100
 ```
